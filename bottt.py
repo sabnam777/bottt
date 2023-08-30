@@ -1,4 +1,3 @@
-import os
 import logging
 import psutil
 import time
@@ -7,7 +6,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Initialize bot and dispatcher
-API_TOKEN = os.environ.get('API_TOKEN')
+API_TOKEN = '6112396584:AAEPTxKGD89gua70NecvKzJa1XV6S9O0qnw'
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
@@ -19,7 +18,6 @@ def get_uptime():
     now = datetime.datetime.now()
     uptime = now - START_TIME
     return uptime
-
 
 # Start command
 
@@ -33,7 +31,7 @@ async def send_welcome(message: types.Message):
         "Supported Platforms: Telegram\n"
         "──────────────────"
     )
-    start_image_url = "https://telegra.ph/file/84ea28b2c377a4fb41d08.jpg"
+    start_image_url = "https://graph.org/file/c0c0fc2df64eb6e661804.jpg"
 
     keyboard = InlineKeyboardMarkup(row_width=1)
     button_hub = InlineKeyboardButton("Hub", url="https://t.me/Akimaxmovies_0")
@@ -49,10 +47,6 @@ async def send_welcome(message: types.Message):
     await bot.send_photo(message.chat.id, start_image_url, caption=caption, reply_markup=keyboard)
 
 
-# ... [Previous Code for bot and dispatcher initialization]
-
-# ... [send_welcome function remains the same]
-
 # Callback handler for main buttons
 @dp.callback_query_handler(lambda c: c.data in ['movie', 'chat', 'cloud', 'admin'])
 async def main_button_callbacks(callback_query: types.CallbackQuery):
@@ -64,11 +58,15 @@ async def main_button_callbacks(callback_query: types.CallbackQuery):
         await bot.answer_callback_query(callback_query.id, "You're not authorized to access this!", show_alert=True)
         return
 
-    # Delete the original message
+     # Delete the original message
     await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)
 
-    # Define the sub-buttons based on the pressed main button
+    # Define the sub-buttons, image, and caption based on the pressed main button
     if callback_data == "movie":
+        caption = (
+            "the list of al the movies channel we have "
+        )
+        image_url = "https://graph.org/file/a66fa8fe396bd2800cd8b.jpg"
         buttons = [
             InlineKeyboardButton(
                 "⚡️AK Imax 2.0⚡️", url="https://t.me/akimax_3"),
@@ -76,6 +74,10 @@ async def main_button_callbacks(callback_query: types.CallbackQuery):
                 "Poster Town™ ♨️", url="https://t.me/PosterTown")
         ]
     elif callback_data == "chat":
+        caption = (
+            "the list of al the chat channel we have "
+        )
+        image_url = "https://telegra.ph/file/f4f81f79e4ee0010e3728.jpg"
         buttons = [
             InlineKeyboardButton("Hindi English Club 🎧",
                                  url="https://t.me/hin_eng"),
@@ -84,6 +86,10 @@ async def main_button_callbacks(callback_query: types.CallbackQuery):
             InlineKeyboardButton("AI Support", callback_data="ai_support")
         ]
     elif callback_data == "cloud":
+        caption = (
+            "the list of al the movies channel we have "
+        )
+        image_url = "https://telegra.ph/file/f4f81f79e4ee0010e3728.jpg"
         buttons = [
             InlineKeyboardButton("Ak Imax Cloud ☁️(Updates)",
                                  url="https://t.me/akimaxmovies_2"),
@@ -94,23 +100,63 @@ async def main_button_callbacks(callback_query: types.CallbackQuery):
                                  url="https://t.me/+_dVsd2Ejje04Mzdl")
         ]
     elif callback_data == "admin":
+        caption = (
+            "the list of all the movies channels we have"
+        )
+        image_url = "https://graph.org/file/9290ef572bd937d4cc93d.jpg"
         buttons = [
             InlineKeyboardButton("Admins⚡️αк-ιмαχ⚡️",
                                  url="https://t.me/+a-pVgLSkIb43Njk1"),
+            InlineKeyboardButton("BIG⚡️",
+                                 url="https://t.me/+86_tf7xP5bE2N2M1"),
+            InlineKeyboardButton("IMAX Support⚡️",
+                                 url="https://t.me/akimaxadmin"),
+            InlineKeyboardButton("Cam-Rip🍬(Sasti Masti)",
+                                 url="https://t.me/+opNj1tZLH-1kN2M9"),
+            InlineKeyboardButton("OnGoing Series 📛",
+                                 url="https://t.me/+DnFSyvBEXHZmZDJl"),
+            InlineKeyboardButton("PREMIUM DATABSE",
+                                 url="https://t.me/+snPwIE-ycZViZmE1"),
+            InlineKeyboardButton("⚡️AK Movies Collection⚡️",
+                                 url="https://t.me/+VM0DrnCpE0tjOWY1"),
+            InlineKeyboardButton("⚡️AK Series Collection⚡️",
+                                 url="https://t.me/+PSpHr4yD_qU4OGM1"),
+            InlineKeyboardButton("Please Join🍿",
+                                 url="https://t.me/+7mSo_SLrQKgzMWI1"),
+            InlineKeyboardButton("Shehzada Muthbaaz",
+                                 url="https://t.me/+hjL-_xJm13JiNTM5"),
+            InlineKeyboardButton("Buffer Files⏳",
+                                 url="https://t.me/+xv7-wixEIHQ1MGM9"),
+            InlineKeyboardButton("Leech Dump 📦",
+                                 url="https://t.me/+aYGKv8-0t3Q2MTM1"),
+            InlineKeyboardButton("AK MEMBERS LOG 📚",
+                                 url="https://t.me/+j3dzt9D0CX05OGQx"),
+            InlineKeyboardButton("Soft",
+                                 url="https://t.me/+RZf8eXgiyzkzZTI1"),
+            InlineKeyboardButton("Red Room",
+                                 url="https://t.me/+IP9KrqbfrQg1NzFh"),
             InlineKeyboardButton(
                 "AK Mirror Leech", url="https://t.me/+8j_oal4LJj5kNWZl")
         ]
 
-    # Create the keyboard and add a "Back" button
-    keyboard = InlineKeyboardMarkup()
-    for btn in buttons:
-        keyboard.add(btn)
+    # Create rows of buttons
+    # <-- Set resize_keyboard to True
+    keyboard = InlineKeyboardMarkup(resize_keyboard=True)
+    button_rows = [buttons[i:i + 2] for i in range(0, len(buttons), 2)]
+
+    # Add button rows to the keyboard
+    for row in button_rows:
+        keyboard.row(*row)
+
+    # Add the "Back" button
     keyboard.add(InlineKeyboardButton("Back", callback_data="back"))
 
-    await bot.send_message(callback_query.message.chat.id, f"You selected {callback_data}", reply_markup=keyboard)
+    # Send the appropriate image with caption and buttons based on the button pressed
+    await bot.send_photo(callback_query.message.chat.id, image_url, caption=caption, reply_markup=keyboard)
 
 
 # Handler for /add command (unchanged)
+
 @dp.message_handler(commands=['add'], user_id=ADMINS)
 async def add_admin(message: types.Message):
     try:
@@ -171,9 +217,8 @@ async def bot_stats(message: types.Message):
 async def donation_callback(callback_query: types.CallbackQuery):
     await bot.send_message(callback_query.message.chat.id, "Thank you for considering a donation! Your support is greatly appreciated.")
 
+
 # /about command handler
-
-
 @dp.message_handler(commands=['about'])
 async def about_command(message: types.Message):
     user_name = message.from_user.first_name
@@ -193,15 +238,16 @@ async def about_command(message: types.Message):
     admin_list_button = InlineKeyboardButton(
         "Admins", callback_data="admin_list")
     donation_button = InlineKeyboardButton(
-        "Donation", callback_data="about_donation")
+        "Donation", url="https://telegra.ph/file/84ea28b2c377a4fb41d08.jpg")
 
     keyboard.add(admin_list_button, donation_button)
 
     await bot.send_photo(message.chat.id, start_image_url, caption=caption, reply_markup=keyboard)
     await bot.delete_message(message.chat.id, message.message_id)
 
-
 # Callback handler for the "Admins" and "Donation" buttons in the /about command
+
+
 @dp.callback_query_handler(lambda c: c.data in ['admin_list', 'donation'])
 async def about_callback_buttons(callback_query: types.CallbackQuery):
     callback_data = callback_query.data
@@ -247,11 +293,9 @@ async def admin_list_callback(callback_query: types.CallbackQuery):
 
     await bot.send_message(callback_query.message.chat.id, admin_list_message, reply_markup=back_button)
 
-# ... [Previous Code]
 
 # /help command handler
-
-
+# /help command handler
 @dp.message_handler(commands=['help'])
 async def help_command(message: types.Message):
     user_name = message.from_user.first_name
@@ -264,23 +308,16 @@ async def help_command(message: types.Message):
         "/add - Add a user as an admin (only for admins)\n"
         "/del - Remove a user from admins (only for admins)"
     )
-    start_image_url = "https://telegra.ph/file/5eed18098c8258d80bc48.jpg"
-
+    image_url = "https://graph.org/file/b397e5dddd21d6495aa38.jpg"
     keyboard = InlineKeyboardMarkup().add(
         InlineKeyboardButton(
             "Donation", url="https://telegra.ph/file/84ea28b2c377a4fb41d08.jpg")
     )
 
-    await message.reply(help_text, reply_markup=keyboard)
-
-
-@dp.callback_query_handler(lambda c: c.data == 'donate')
-async def donation_callback(callback_query: types.CallbackQuery):
-    await donate_command(callback_query.message)
-    await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)
-
+    await message.reply_photo(image_url, help_text, reply_markup=keyboard)
 
 # Handle "back" callback to show the main menu
+
 
 @dp.callback_query_handler(lambda c: c.data == 'back')
 async def go_back(callback_query: types.CallbackQuery):
@@ -310,13 +347,6 @@ async def sub_button_callbacks(callback_query: types.CallbackQuery):
     button_back = InlineKeyboardButton("Back", callback_data="back")
     keyboard.add(button_back)
     await bot.send_message(callback_query.message.chat.id, text, reply_markup=keyboard)
-
-
-@dp.callback_query_handler(lambda c: c.data == 'back')
-async def go_back(callback_query: types.CallbackQuery):
-    # Delete the current message and show the start message again
-    await bot.delete_message(callback_query.message.chat.id, callback_query.message.message_id)
-    await send_welcome(callback_query.message)
 
 
 if __name__ == '__main__':
